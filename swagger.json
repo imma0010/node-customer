@@ -1,0 +1,213 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Customers API",
+        "description": "Find out how your APIs work"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Users",
+            "description": "API for users in the system"
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "in": "headers",
+            "name": "authorization"
+        }
+    },
+    "paths": {
+        "/": {
+            "post": {
+                "summary": "Register Customers",
+                "tags": [
+                    "Customers"
+                ],
+                "description": "Customer registration into System",
+                "parameters": [
+                    {
+                        "name": "customer",
+                        "in": "body",
+                        "description": "Customer Registration",
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Registration Success",
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    },
+                    "401": {
+                        "description": "Registration details are not valid!!"
+                    },
+                    "500": {
+                        "description": "User Registration failed!!"
+                    }
+                }
+            }
+        },
+        "/customers": {
+            "get": {
+                "summary": "Get Customers",
+                "tags": [
+                    "Customers"
+                ],
+                "description": "Get Customers from System",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "500": {
+                        "description": "Fail"
+                    }
+                }
+            }
+        },
+        "/customer/{id}": {
+            "get": {
+                "summary": "Get Customer by ID",
+                "tags": [
+                    "Customers"
+                ],
+                "description": "Get Customers by ID from System",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": "true",
+                        "description": "Numeric ID to get Customer"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "500": {
+                        "description": "Fail"
+                    }
+                }
+            }
+        },
+        "/editCustomer/{id}": {
+            "put": {
+                "summary": "Edit Customer by ID",
+                "tags": [
+                    "Customers"
+                ],
+                "description": "Edit Customers by ID from System",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": "true",
+                        "description": "Numeric ID to edit Customer"
+                    },
+                    {
+                        "name": "customer",
+                        "in": "body",
+                        "description": "Customer Update",
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "500": {
+                        "description": "Fail"
+                    }
+                }
+            }
+        },
+        "/deleteCustomer/{id}": {
+            "delete": {
+                "summary": "Delete Customer by ID",
+                "tags": [
+                    "Customers"
+                ],
+                "description": "Delete Customers by ID from System",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": "true",
+                        "description": "Numeric ID to get Customer"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "500": {
+                        "description": "Fail"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Customer": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
